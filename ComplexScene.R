@@ -27,6 +27,7 @@ cosfunction = function(x) cos(x)
 coscurve = cbind(re*0, re, cosfunction(re))
 plot3d(coscurve,type="l", lwd=5, col=c("Navy"), add=TRUE)
 # Rotate the scene a bit
+M <- par3d("userMatrix")
 play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/2, 1, 0, 0), rotate3d(M, pi/2, 0, 1, 0) ) ), duration=10 )
 # segments3d(coscurve[1:20,],nc=3,byrow=TRUE)
 # Will need sin later...
