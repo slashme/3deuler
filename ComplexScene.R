@@ -11,8 +11,8 @@ complexsurf=outer(re,im,f)
 # Create a square matrix containing the real value of the complex surface
 realsurf=Re(complexsurf)
 # Truncate the matrix
-realsurf[(realsurf < -10)] = NA
-realsurf[(realsurf >  10)] = NA
+#realsurf[(realsurf < -10)] = NA
+#realsurf[(realsurf >  10)] = NA
 #Temporary:
 # realsurf[(realsurf >  0)] = NA
 # Open a 3D canvas
