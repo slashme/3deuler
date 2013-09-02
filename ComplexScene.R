@@ -15,3 +15,8 @@ open3d()
 # Plot a surface using the real-valued surface calculated above, coloured red, 50% transparent.  
 # TODO: figure out how to set the scene so that you don't have to zoom in after this step.
 surface3d(re,re,realsurf,color=c("red"),alpha=0.5)
+# Add axes - note: tick length depends on the bounding box size, so at the moment, these axes look really bad.  Options: truncate the data, or somehow resize the bounding box.
+axes3d()
+axis3d("x",pos=c(0,0,0))
+axis3d("y",pos=c(0,0,0))
+labels=T
