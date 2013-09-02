@@ -20,3 +20,4 @@ axes3d()
 axis3d("x",pos=c(0,0,0))
 axis3d("y",pos=c(0,0,0))
 labels=T
+# Next step: use the technique alluded to in http://stackoverflow.com/questions/15717267/how-to-draw-parametric-3d-curve-with-smoothing-in-r to generate a parametric curve.
