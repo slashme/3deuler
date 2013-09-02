@@ -1,8 +1,8 @@
 # Load rgl library
 require(rgl)
-# Create a vector from -2π to 2π
-re = (-10:10)*pi/5
-# Create a vector from -2πi to 2πi
+# Create a vector ranging from -2π to 2π in steps of π/5
+re = seq(from=-2*pi, to=2*pi, by=pi/5)
+# Create a vector ranging from -2πi to 2πi in steps of πi/5
 im = re*1i
 # Define the exponential function on the sum of the two vectors
 f <- function(re,im) exp(re+im)
