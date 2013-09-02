@@ -25,11 +25,11 @@ surface3d(re,re,realsurf,color=c("red"),alpha=0.5)
 axis3d("x",pos=c(0,0,0))
 axis3d("y",pos=c(0,0,0))
 labels=T
-# Next step: use the technique alluded to in http://stackoverflow.com/questions/15717267/how-to-draw-parametric-3d-curve-with-smoothing-in-r to generate a parametric curve.
-# Got it to draw a curve, now need to fix the broken line problem.
+# Draw parametric curve
 cosfunction = function(x) cos(x)
 coscurve = cbind(re*0, re, cosfunction(re))
-segments3d(coscurve[1:20,])
+plot3d(coscurve[1:20,],type="l", lwd=5, add=TRUE)
+# segments3d(coscurve[1:20,],nc=3,byrow=TRUE)
 # Will need sin later...
 # sinfunction = function(x) sin(x)
 # sincurve = cbind(re*0, re, sinfunction(re))
