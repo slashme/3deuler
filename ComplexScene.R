@@ -11,15 +11,12 @@ complexsurf=outer(re,im,f)
 # Create a square matrix containing the real value of the complex surface
 realsurf=Re(complexsurf)
 # Truncate the matrix
-#realsurf[(realsurf < -10)] = NA
-#realsurf[(realsurf >  10)] = NA
-#Temporary:
-# realsurf[(realsurf >  0)] = NA
+realsurf[(realsurf < -10)] = NA
+realsurf[(realsurf >  10)] = NA
 # Open a 3D canvas
 open3d()
-# Plot a surface using the real-valued surface calculated above, coloured red, 50% transparent.  
-# Note: this plot isn't isometric: the z axis is compressed to accomodate the higher range of values
-persp3d(re,re,realsurf,color=c("red"))
+# Plot a surface using the real-valued surface calculated above, coloured red, 20% transparent.  
+surface3d(re,re,realsurf,color=c("red"),alpha=0.8)
 # Add axes
 # axes3d()
 axis3d("x",pos=c(0,0,0))
@@ -28,7 +25,9 @@ labels=T
 # Draw parametric curve
 cosfunction = function(x) cos(x)
 coscurve = cbind(re*0, re, cosfunction(re))
-plot3d(coscurve[1:20,],type="l", lwd=5, add=TRUE)
+plot3d(coscurve,type="l", lwd=5, col=c("Navy"), add=TRUE)
+# Rotate the scene a bit
+play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/2, 1, 0, 0), rotate3d(M, pi/2, 0, 1, 0) ) ), duration=10 )
 # segments3d(coscurve[1:20,],nc=3,byrow=TRUE)
 # Will need sin later...
 # sinfunction = function(x) sin(x)
