@@ -18,8 +18,8 @@ realsurf[(realsurf >  10)] = NA
 # Open a 3D canvas
 open3d()
 # Plot a surface using the real-valued surface calculated above, coloured red, 50% transparent.  
-# TODO: figure out how to set the scene so that you don't have to zoom in after this step.
-surface3d(re,re,realsurf,color=c("red"),alpha=0.5)
+# Note: this plot isn't isometric: the z axis is compressed to accomodate the higher range of values
+persp3d(re,re,realsurf,color=c("red"),alpha=0.5)
 # Add axes
 # axes3d()
 axis3d("x",pos=c(0,0,0))
