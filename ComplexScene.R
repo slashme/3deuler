@@ -1,8 +1,8 @@
 # Load rgl library
 require(rgl)
-# Create a vector ranging from -2π to 2π in steps of π/5
-re = seq(from=-2*pi, to=2*pi, by=pi/5)
-# Create a vector ranging from -2πi to 2πi in steps of πi/5
+# Create a vector ranging from -2π to 2π in steps of π/50
+re = seq(from=-2*pi, to=2*pi, by=pi/50)
+# Create a vector ranging from -2πi to 2πi in steps of πi/50
 im = re*1i
 # Define the exponential function on the sum of the two vectors
 f <- function(re,im) exp(re+im)
@@ -19,7 +19,7 @@ realsurf[(realsurf >  10)] = NA
 open3d()
 # Plot a surface using the real-valued surface calculated above, coloured red, 50% transparent.  
 # Note: this plot isn't isometric: the z axis is compressed to accomodate the higher range of values
-persp3d(re,re,realsurf,color=c("red"),alpha=0.5)
+persp3d(re,re,realsurf,color=c("red"))
 # Add axes
 # axes3d()
 axis3d("x",pos=c(0,0,0))
