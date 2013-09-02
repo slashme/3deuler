@@ -13,6 +13,8 @@ realsurf=Re(complexsurf)
 # Truncate the matrix
 realsurf[(realsurf < -10)] = NA
 realsurf[(realsurf >  10)] = NA
+#Temporary:
+# realsurf[(realsurf >  0)] = NA
 # Open a 3D canvas
 open3d()
 # Plot a surface using the real-valued surface calculated above, coloured red, 50% transparent.  
@@ -24,7 +26,11 @@ axis3d("x",pos=c(0,0,0))
 axis3d("y",pos=c(0,0,0))
 labels=T
 # Next step: use the technique alluded to in http://stackoverflow.com/questions/15717267/how-to-draw-parametric-3d-curve-with-smoothing-in-r to generate a parametric curve.
-# segments3d(c(re,sinfunction(re),re*0.0)) doesn't work: need to generate an array
-sinfunction = function(x) sin(x)
-sincurve = cbind(re, sinfunction(re), re*0)
-
+# Got it to draw a curve, now need to fix the broken line problem.
+cosfunction = function(x) cos(x)
+coscurve = cbind(re*0, re, cosfunction(re))
+segments3d(coscurve[1:20,])
+# Will need sin later...
+# sinfunction = function(x) sin(x)
+# sincurve = cbind(re*0, re, sinfunction(re))
+# segments3d(sincurve[1:20,])
