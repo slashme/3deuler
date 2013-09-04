@@ -28,7 +28,7 @@ realsurftrunc[(realsurftrunc < -10) | (realsurftrunc > 10)] <- NA
 realsurf[(realsurf < -75) | (realsurf > 75)] <- NA
 
 # Open a 3D canvas
-open3d()
+open3d(windowRect=c(0,0,640,480))
 # Plot a surface using the real-valued surface calculated above, coloured red, 20% transparent.  
 surface3d(re,re,realsurftrunc,color=c("red"),alpha=0.8)
 # Add axes
@@ -63,10 +63,11 @@ M <- matrix( c(1, -0.3, 0, 0, 0, 0.3, 1, 0, -0.3, -1, 0.3, 0, 0, 0, 0, 1), ncol=
 N <- matrix( c(0,-1,0,0,0,0,1,0,-1,0,0,0,0,0,0,1),  ncol=4, byrow=TRUE)
 #par3d(userMatrix=M)
 par3d(zoom=0.05)
-par3d(userMatrix=N)
+par3d(userMatrix=M)
 
 # Rotate the scene a bit
-play3d( par3dinterp( userMatrix=list(N, M), method="linear", times=c(0,30) ), duration=30 )
+play3d( par3dinterp( userMatrix=list(M, N), method="linear", times=c(0,3) ), duration=3 )
+movie3d( par3dinterp( userMatrix=list(N, M), method="linear", times=c(0,30) ), duration=30 )
 #play3d( par3dinterp( userMatrix=list(N, rotate3d(N,pi/4,1,0,0), rotate3d(N,pi/4,0,1,0) ) , extrapolate="natural"), duration=30 )
 #play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
 
