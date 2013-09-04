@@ -25,7 +25,7 @@ realsurftrunc <- realsurf
 realsurftrunc[(realsurftrunc < -10) | (realsurftrunc > 10)] <- NA
 
 #Keep a less-truncated version to hide the truncation effect.
-realsurf[(realsurf < -100) | (realsurf > 100)] <- NA
+realsurf[(realsurf < -75) | (realsurf > 75)] <- NA
 
 # Open a 3D canvas
 open3d()
@@ -37,7 +37,8 @@ axis3d("y",pos=c(0,0,0))
 labels<-T
 
 # Save viewport
-M <- par3d("userMatrix")
+# M <- par3d("userMatrix")
+
 
 # Draw parametric cos function
 cosfunction <- function(x) cos(x)
@@ -57,23 +58,28 @@ plot3d(negexpcurve,type="l", lwd=5, col=c("Green"), add=TRUE)
 # Add the surface again so that the truncation doesn't show.
 surface3d(re,re,realsurf,color=c("red"),alpha=0.8, add=TRUE)
 
-#Set suitable view
-par3d(userMatrix=M)
-par3d(zoom=0.1)
+# Set suitable view
+M <- matrix( c(1, -0.3, 0, 0, 0, 0.3, 1, 0, -0.3, -1, 0.3, 0, 0, 0, 0, 1), ncol=4, byrow=TRUE)
+N <- matrix( c(0,-1,0,0,0,0,1,0,-1,0,0,0,0,0,0,1),  ncol=4, byrow=TRUE)
+#par3d(userMatrix=M)
+par3d(zoom=0.05)
+#par3d(userMatrix=N)
 
 # Rotate the scene a bit
-play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
+#play3d( par3dinterp( userMatrix=list(M, N) ), duration=30 )
+play3d( par3dinterp( userMatrix=list(N, rotate3d(N,pi/4,1,0,0), rotate3d(N,pi/4,0,1,0) )), duration=30 )
+#play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
 
-# Create 3D spiral
-open3d()
-
-# Draw parametric sin function
-sinfunction <- function(x) sin(x)
-spiralcurve <- cbind(re, sinfunction(re), cosfunction(re))
-plot3d(c(-10,10),c(-10,10),c(-10,10))
-plot3d(spiralcurve,type="l", lwd=5, col=c("Navy"), add=TRUE,xlim=c(-10,10),ylim=c(-10,10),zlim=c(-10,10))
-# Add axes
-axis3d("x",pos=c(0,0,0))
-axis3d("y",pos=c(0,0,0))
-axis3d("z",pos=c(0,0,0))
-labels<-T
+## Create 3D spiral
+#open3d()
+#
+## Draw parametric sin function
+#sinfunction <- function(x) sin(x)
+#spiralcurve <- cbind(re, sinfunction(re), cosfunction(re))
+#plot3d(c(-10,10),c(-10,10),c(-10,10))
+#plot3d(spiralcurve,type="l", lwd=5, col=c("Navy"), add=TRUE,xlim=c(-10,10),ylim=c(-10,10),zlim=c(-10,10))
+## Add axes
+#axis3d("x",pos=c(0,0,0))
+#axis3d("y",pos=c(0,0,0))
+#axis3d("z",pos=c(0,0,0))
+#labels<-T
