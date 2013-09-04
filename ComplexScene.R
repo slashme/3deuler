@@ -32,7 +32,6 @@ open3d()
 # Plot a surface using the real-valued surface calculated above, coloured red, 20% transparent.  
 surface3d(re,re,realsurftrunc,color=c("red"),alpha=0.8)
 # Add axes
-# axes3d()
 axis3d("x",pos=c(0,0,0))
 axis3d("y",pos=c(0,0,0))
 labels<-T
@@ -65,3 +64,14 @@ par3d(zoom=0.01)
 # Rotate the scene a bit
 play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
 
+# Create 3D spiral
+open3d()
+
+# Draw parametric sin function
+sinfunction <- function(x) sin(x)
+spiralcurve <- cbind(re, sinfunction(re), cosfunction(re))
+plot3d(spiralcurve,type="l", lwd=5, col=c("Navy"), add=TRUE)
+# Add axes
+axis3d("x",pos=c(0,0,0))
+axis3d("y",pos=c(0,0,0))
+labels<-T
