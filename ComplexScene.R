@@ -37,23 +37,31 @@ axis3d("x",pos=c(0,0,0))
 axis3d("y",pos=c(0,0,0))
 labels<-T
 
-# Draw parametric curve
+# Save viewport
+M <- par3d("userMatrix")
+
+# Draw parametric cos function
 cosfunction <- function(x) cos(x)
 coscurve <- cbind(re*0, re, cosfunction(re))
 plot3d(coscurve,type="l", lwd=5, col=c("Navy"), add=TRUE)
+
+# Draw parametric exponential function
+expfunction <- function(y) exp(y)
+expcurve <- cbind(re, re*0, expfunction(re))
+plot3d(expcurve,type="l", lwd=5, col=c("Green"), add=TRUE)
+
+# Draw negative parametric exponential function
+negexpfunction <- function(y) -exp(y)
+negexpcurve <- cbind(re, re*0-pi, negexpfunction(re))
+plot3d(negexpcurve,type="l", lwd=5, col=c("Green"), add=TRUE)
 
 # Add the surface again so that the truncation doesn't show.
 surface3d(re,re,realsurf,color=c("red"),alpha=0.8, add=TRUE)
 
 #Set suitable view
-par3d(zoom=0.05)
+par3d(userMatrix=M)
+par3d(zoom=0.01)
 
 # Rotate the scene a bit
-#M <- par3d("userMatrix")
-#play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/2, 1, 0, 0), rotate3d(M, pi/2, 0, 1, 0) ) ), duration=10 )
-
-# Will need sin later...
-# sinfunction <- function(x) sin(x)
-# sincurve <- cbind(re*0, re, sinfunction(re))
-# segments3d(sincurve[1:20,])
+play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
 
