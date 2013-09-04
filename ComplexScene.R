@@ -1,7 +1,7 @@
 # Load rgl library
 require(rgl)
 # Create a vector ranging from -2π to 2π in steps of π/50
-re <- seq(from=-2*pi, to=2*pi, by=pi/50)
+re <- seq(from=-4*pi, to=4*pi, by=pi/25)
 im <- re
 
 ## Create a vector ranging from -2πi to 2πi in steps of πi/50
@@ -46,12 +46,12 @@ plot3d(coscurve,type="l", lwd=5, col=c("Navy"), add=TRUE)
 
 # Draw parametric exponential function
 expfunction <- function(y) exp(y)
-expcurve <- cbind(re, re*0, expfunction(re))
+expcurve <- cbind(re[expfunction(re)<10], re[expfunction(re)<10]*0, expfunction(re)[expfunction(re)<10])
 plot3d(expcurve,type="l", lwd=5, col=c("Green"), add=TRUE)
 
 # Draw negative parametric exponential function
 negexpfunction <- function(y) -exp(y)
-negexpcurve <- cbind(re, re*0-pi, negexpfunction(re))
+negexpcurve <- cbind(re[negexpfunction(re)>-10], re[negexpfunction(re)>-10]*0-pi, negexpfunction(re)[negexpfunction(re)>-10])
 plot3d(negexpcurve,type="l", lwd=5, col=c("Green"), add=TRUE)
 
 # Add the surface again so that the truncation doesn't show.
@@ -59,7 +59,7 @@ surface3d(re,re,realsurf,color=c("red"),alpha=0.8, add=TRUE)
 
 #Set suitable view
 par3d(userMatrix=M)
-par3d(zoom=0.01)
+par3d(zoom=0.1)
 
 # Rotate the scene a bit
 play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
@@ -70,8 +70,10 @@ open3d()
 # Draw parametric sin function
 sinfunction <- function(x) sin(x)
 spiralcurve <- cbind(re, sinfunction(re), cosfunction(re))
-plot3d(spiralcurve,type="l", lwd=5, col=c("Navy"), add=TRUE)
+plot3d(c(-10,10),c(-10,10),c(-10,10))
+plot3d(spiralcurve,type="l", lwd=5, col=c("Navy"), add=TRUE,xlim=c(-10,10),ylim=c(-10,10),zlim=c(-10,10))
 # Add axes
 axis3d("x",pos=c(0,0,0))
 axis3d("y",pos=c(0,0,0))
+axis3d("z",pos=c(0,0,0))
 labels<-T
