@@ -63,11 +63,11 @@ M <- matrix( c(1, -0.3, 0, 0, 0, 0.3, 1, 0, -0.3, -1, 0.3, 0, 0, 0, 0, 1), ncol=
 N <- matrix( c(0,-1,0,0,0,0,1,0,-1,0,0,0,0,0,0,1),  ncol=4, byrow=TRUE)
 #par3d(userMatrix=M)
 par3d(zoom=0.05)
-#par3d(userMatrix=N)
+par3d(userMatrix=N)
 
 # Rotate the scene a bit
-#play3d( par3dinterp( userMatrix=list(M, N) ), duration=30 )
-play3d( par3dinterp( userMatrix=list(N, rotate3d(N,pi/4,1,0,0), rotate3d(N,pi/4,0,1,0) )), duration=30 )
+play3d( par3dinterp( userMatrix=list(N, M), method="linear", times=c(0,30) ), duration=30 )
+#play3d( par3dinterp( userMatrix=list(N, rotate3d(N,pi/4,1,0,0), rotate3d(N,pi/4,0,1,0) ) , extrapolate="natural"), duration=30 )
 #play3d( par3dinterp( userMatrix=list(M,rotate3d(M, pi/6, 1, 0, 0), rotate3d(M, pi/6, 0, 1, 0) ) ), duration=10 )
 
 ## Create 3D spiral
