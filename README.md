@@ -12,8 +12,8 @@ following the discussion at [Wikipedia's Graphics Lab](https://en.wikipedia.org/
 - [x] Animate the camera
 - [&ensp;] Make the axes' ticks and labels be based on π,
   like [this](https://commons.wikimedia.org/wiki/File:Exponential_Function_%28Imag_Part%29.png)
-- [&ensp;] Draw an exponential curve on the surface
-- [&ensp;] Fade out the surface to hide the jagged edges from truncating it
+- [x] Draw an exponential curve on the surface
+- [x] Fade out the surface to hide the jagged edges from truncating it (workaround: just choose viewport appropriately.)
 
 **Instructions:**
 * Install the packages on Ubuntu: `sudo apt-get install r-base r-cran-rgl`
